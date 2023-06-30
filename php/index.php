@@ -13,17 +13,23 @@ class Genre {
 }
 
 class Movie {
+    public static $counter = 0;
+
     public $title;
     public $year;
     public $description;
+    public $regOrder;
 
     public Array $genres;
 
     public function __construct($title, $year, $description, Genre ...$genres) {
+        
+        self :: $counter++;
 
         $this -> title = $title;
         $this -> year = $year;
         $this -> description = $description;
+        $this -> regOrder = self :: $counter;
 
         $this -> genres = $genres;
 
@@ -31,7 +37,7 @@ class Movie {
 
     public function getMovieData() {
 
-        return "titolo: " . $this -> title . "<br>" . "anno: " . $this -> year . "<br>" . "descrizione: " . $this -> description;
+        return "titolo: " . $this -> title . "<br>" . "anno: " . $this -> year . "<br>" . "descrizione: " . $this -> description . "<br>" . "ordine: " . $this -> regOrder;
 
     }
 }
@@ -77,6 +83,10 @@ echo $movie2 -> getMovieData();
 echo "<br> <br>";
 
 var_dump($movie2 -> genres);
+
+echo "<br> <br>";
+
+echo Movie :: $counter;
 
 
 ?>
