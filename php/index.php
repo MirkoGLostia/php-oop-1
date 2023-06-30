@@ -2,16 +2,30 @@
 
 // classi
 
+class Genre {
+    public $name;
+
+    public function __construct($name) {
+
+        $this -> name = $name;
+
+    }
+}
+
 class Movie {
     public $title;
     public $year;
     public $description;
 
-    public function __construct($title, $year, $description) {
+    public Array $genres;
+
+    public function __construct($title, $year, $description, Genre ...$genres) {
 
         $this -> title = $title;
         $this -> year = $year;
         $this -> description = $description;
+
+        $this -> genres = $genres;
 
     }
 
@@ -24,12 +38,27 @@ class Movie {
 
 
 
+// elementi nella classe genres
 
-// elementi nelle classi
+$adventure = new Genre("avventura");
 
-$movie1 = new Movie("la prateria", "2010", "descrivo la prateria e la sua storia");
+$mistery = new Genre("mistero");
 
-$movie2 = new Movie("la montagna", "2006", "vedremmo come la montagna è e sarà");
+$romance = new Genre("romantico");
+
+$comic = new Genre("comico");
+
+$horror = new Genre("horror");
+
+
+
+
+
+// elementi nella classe Movie
+
+$movie1 = new Movie("la prateria", 2010, "descrivo la prateria e la sua storia", $mistery, $horror);
+
+$movie2 = new Movie("la montagna", 2006, "vedremmo come la montagna è e sarà", $adventure, $romance, $comic);
 
 
 
@@ -39,7 +68,15 @@ echo $movie1 -> getMovieData();
 
 echo "<br> <br>";
 
+var_dump($movie1 -> genres);
+
+echo "<br> <br>";
+
 echo $movie2 -> getMovieData();
+
+echo "<br> <br>";
+
+var_dump($movie2 -> genres);
 
 
 ?>
